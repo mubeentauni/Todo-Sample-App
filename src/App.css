@@ -1,0 +1,130 @@
+body {
+  background: #efefef;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+}
+
+.title {
+  text-align: center;
+}
+
+.note {
+  list-style: none;
+  display: inline-flex;
+  padding:10px;
+  margin:10px;
+  background:white;
+  width: 200px;
+  border:1px solid transparent;
+  border-radius: 3px;
+  box-shadow: 0.2px 2px 0px 1px rgba(200, 200, 200, 0.5);
+}
+
+.note:hover button {
+  opacity: 0.5;
+}
+
+.edit-input {
+  width: 200px;
+  outline:0;
+  border:none;
+  max-width: 200px;
+  min-width: 200px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: #efefef;;
+  line-height: 40px;
+  font-size:1rem;
+}
+
+
+.note > div > div{
+  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.task-body {
+  width:160px;
+  min-width:160px;
+  max-width:160px;
+  overflow: auto;
+  text-overflow: ellipsis !important;
+  line-height: 30px;
+  word-wrap: break-word;
+}
+
+.add-note {
+  /*margin:0 auto;*/
+  color:#efefef;
+  padding:10px;
+  font-weight: bold;
+  background-color: #424242;
+  border:1px solid transparent;
+  border-radius: 3px;
+  box-shadow: 0.5px 2px 0px 1px rgba(100, 100, 100, 0.5);
+  outline: none;
+  transition: all 0.05s linear;
+  position: relative;
+  top:0;
+}
+
+.add-note:active {
+  box-shadow: 0px 2px 0px 0px rgba(222, 222, 222, 0.5);
+  position: relative;
+  top:2px;
+  transition: all 0.05s linear;
+}
+
+.add-note:hover {
+  background-color: #ffffff;
+  color:#333;
+}
+
+.add-text {
+  font-size: 0.9rem;
+  padding: 0 5px;
+  float: left;
+  margin-top:2px;
+}
+
+.add-icon {
+  border-radius: 50%;
+  border: 2px outset rgba(200, 200, 200, 0.25);
+  background-color: rgba(200, 200, 200, 0.15);
+  padding: 0 3.5px 2px 3.5px;
+  float: right;
+}
+
+.delete-btn {
+  opacity: 0;
+  transition: opacity 0.1s linear;
+  color:rgba(255, 0, 0, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
+  font-weight: bold;
+  border:3px outset rgba(200, 200, 200, 0.25);
+  border-radius: 100%;
+  outline: none;
+  font-size:1.2rem;
+  padding: 0 7px 0 5px;
+  height: 40px;
+}
+
+.delete-btn:active {
+  border:3px inset rgba(200, 200, 200, 0.25);
+  opacity: 0.65;
+  background-color: rgba(235, 235, 235, 0.95);
+}
