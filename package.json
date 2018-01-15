@@ -1,18 +1,30 @@
 {
-  "name": "todo-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.16.2",
-    "react": "^15.6.1",
-    "react-bootstrap": "^0.31.3",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
-  },
+  "name": "noode-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mubeentauni/Todo-Sample-App.git"
+  },
+  "author": "Mubeen Tauni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mubeentauni/Todo-Sample-App/issues"
+  },
+  "homepage": "https://github.com/mubeentauni/Todo-Sample-App#readme",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "^2.6.9",
+    "express": "^4.16.2",
+    "bcrypt-nodejs": "0.0.3",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.7",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1"
   }
 }
