@@ -4,12 +4,14 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var customError = require('./error');
+var cors = require('cors');
 
 mongoose.connect('localhost:27017/Todo');
 var api = require('./routes/api');
 
 var app = express();
 
+app.use(cors({credentials: true, origin: '*'}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

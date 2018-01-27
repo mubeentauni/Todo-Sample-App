@@ -80,8 +80,8 @@ router.post('/todo/create', function(req, res, next) {
     if (!req.body.userid ) {
         next(new customError(404, 'User not found'));
     }
-    if (!req.body.title || !req.body.description) {
-        next(new customError(400, 'Title and description are required fields'));
+    if (!req.body.description) {
+        next(new customError(400, 'Description is required'));
     }
     if(getToken(req.headers)) {
         return User.find({userId: req.body.userid})
@@ -89,14 +89,13 @@ router.post('/todo/create', function(req, res, next) {
                 if (!user) next(new customError(404, 'User not found'));
                 let newTodo = new Todos({
                     userId: req.body.userid,
-                    title: req.body.title,
                     description: req.body.description,
                     priority: req.body.priority,
                     status: req.body.status || 'DUE'
                 });
                 return newTodo.save()
                     .then((todo) => {
-                        res.status(201).json({success: true, id: todo._id});
+                        res.status(201).json({success: true, _id: todo._id});
                     }).catch((err) => {
                         next(new customError(500, 'Could not create todo, try again later'));
                     });
@@ -113,8 +112,8 @@ router.put('/todo/update/:id', function(req, res, next) {
     if (!req.body.userid ) {
         next(new customError(404, 'User not found'));
     }
-    if (!req.body.title || !req.body.description) {
-        next(new customError(400, 'Title and description are required fields'));
+    if (!req.body.description) {
+        next(new customError(400, 'Description is required.'));
     }
     if(getToken(req.headers)) {
         let todoId = req.params.id;
@@ -197,10 +196,6 @@ router.get('/todo/:userid/:todoid', function(req, res, next) {
 });
 
 router.delete('/todo/:userid/:todoid', function(req, res, next) {
-    if (!req.params.userid)
-        next(new customError(404, 'User not found'));
-    if (!req.params.todoid)
-        next(new customError(404, 'Todo not found'));
     let {
         userid,
         todoid}= req.params;
@@ -210,7 +205,8 @@ router.delete('/todo/:userid/:todoid', function(req, res, next) {
                 if (!user) next(new customError(404, 'User not found'));
                 return Todos.remove({userId: userid, _id: todoid})
                     .then(todo => {
-                        if(!!todo.n)
+                      console.log(todo, "todooooo delete");
+                        if(!!todo.result.n)
                             res.send(todo);
                         next(new customError(404, 'Todo not found'));
                     })

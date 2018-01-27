@@ -5,10 +5,6 @@ let TodoSchema = new Schema({
     userId: {
       type: Schema.Types.ObjectId
     },
-    title: {
-        type: String,
-        required: true
-    },
     description: {
         type: String,
         required: true
