@@ -1,5 +1,7 @@
 import alt from '../lib/alt';
 import TasskActions from '../actions/TaskActions';
+import CONSTANTS from '../utils/constants';
+import Helpers from '../utils/helpers';
 import * as $ from "axios";
 
 class TaskStore {
@@ -8,13 +10,17 @@ class TaskStore {
         this.tasks = [];
     }
 
+    resetStore() {
+        this.setState({task: []});
+    } 
+
     read(){
         let _this = this;
-        const tasks = this.tasks;
+        const tasks = [];
         // replace todomvc on line 14 with your APP ID found in your Stamplay App Dashboard.
-        $.get("https://todoapptauni.stamplayapp.com/api/cobject/v1/newtask" ,{params: {select:'task'}} )
+        $.get(`${CONSTANTS.API_URL}/todo/${localStorage.getItem('userId')}` , Helpers.getHeader() )
             .then(function(res) {
-                let alltasks = res.data.data;
+                let alltasks = res.data;
                 _this.setState({
                     tasks : tasks.concat(alltasks)
                 })
@@ -23,23 +29,35 @@ class TaskStore {
 
     create(task){
         let _this = this;
+        const newTask = {
+          description: task.task,
+          userid: localStorage.getItem('userId')
+        };
         const tasks = this.tasks;
-        $.post("https://todoapptauni.stamplayapp.com/api/cobject/v1/newtask", task)
+        $.post(`${CONSTANTS.API_URL}todo/create`,
+        newTask, Helpers.getHeader())
             .then(function(res) {
                 let task = res.data;
+                newTask['_id'] = task._id;
                 _this.setState({
-                    tasks : tasks.concat(task)
+                    tasks : tasks.concat(newTask)
                 })
             })
     }
 
     findTask(id) {
         const tasks = this.tasks;
-        const taskIndex = tasks.findIndex((task) => task.id === id);
+        const taskIndex = tasks.findIndex((task) => task._id === id);
         if(taskIndex < 0) {
             console.warn("Failed to find task", tasks, id);
         }
         return taskIndex;
+    }
+
+    updateTaskDescription(index, taskDescription) {
+      let tasks = this.tasks;
+      tasks[index].description = taskDescription;
+      this.setState({tasks: tasks});
     }
 
     update(obj){
@@ -48,14 +66,15 @@ class TaskStore {
         let _this = this;
         const tasks = this.tasks;
         const taskIndex = this.findTask(id);
-
         if(taskIndex < 0) { return }
 
-        $.put("https://todoapptauni.stamplayapp.com/api/cobject/v1/newtask/" + id, { task : task })
+        $.put(`${CONSTANTS.API_URL}todo/update/${id}`,
+            { description: task,
+              userid: localStorage.getItem('userId')}, Helpers.getHeader())
             .then(function(res) {
-                console.info("Updated", id);
+                _this.updateTaskDescription(taskIndex, task);
             }, function(err) {
-                console.err("Error updating :", id, err);
+                console.log("Error updating :", id, err);
             })
 
         tasks[taskIndex].task = task;
@@ -68,19 +87,20 @@ class TaskStore {
         let _this = this;
         const tasks = this.tasks;
         const taskIndex = this.findTask(id);
+        const userId = localStorage.getItem('userId');
 
         if(taskIndex < 0) { return }
 
-        $.delete("https://todoapptauni.stamplayapp.com/api/cobject/v1/newtask/" + id)
+        $.delete(`${CONSTANTS.API_URL}todo/${userId}/${id}`, Helpers.getHeader())
             .then(function(res) {
                 console.info("Deleted", id);
+                  _this.setState({
+                      tasks : tasks.slice(0, taskIndex).concat(tasks.slice(taskIndex + 1))
+                  })
             }, function(err) {
-                console.err("Error deleting :", id, err);
+                console.log("Error deleting :", id, err);
             })
 
-        this.setState({
-            tasks : tasks.slice(0, taskIndex).concat(tasks.slice(taskIndex + 1))
-        })
 
     }
 

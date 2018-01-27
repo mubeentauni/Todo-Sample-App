@@ -5,10 +5,10 @@ export default class Tasks extends Component {
 
     renderTask = (task) => {
         return (
-            <li className="note" key={task.id}>
-                <Task task={task.task}
-                      onEdit={this.props.onEdit.bind(null, task.id)}
-                      onDelete={this.props.onDelete.bind(null, task.id)}
+            <li className="note" key={task._id}>
+                <Task task={task}
+                      onEdit={this.props.onEdit.bind(null, task._id)}
+                      onDelete={this.props.onDelete.bind(null, task._id)}
                 />
             </li>
         )

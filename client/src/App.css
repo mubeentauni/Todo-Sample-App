@@ -5,6 +5,10 @@ body {
   margin-top: 10%;
 }
 
+.logout-btn{
+  float:right;
+}
+
 .notes {
   display: flex;
   flex-wrap: wrap;

@@ -21,7 +21,7 @@ export default class Task extends Component{
                 type="text"
                 className="edit-input"
                 autoFocus={true}
-                defaultValue={this.props.task}
+                defaultValue={this.props.task.description}
                 onBlur={this.finishEdit}
                 onKeyPress={this.checkEnter}></textarea>
         )
@@ -31,7 +31,7 @@ export default class Task extends Component{
         const onDelete = this.props.onDelete;
         return (
             <div>
-                <span onClick={this.edit} className="task-body">{this.props.task}</span>
+                <span onClick={this.edit} className="task-body">{this.props.task.description}</span>
                 {  onDelete ? this.renderDelete() : null}
             </div>
         )

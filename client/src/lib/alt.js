@@ -1,4 +1,4 @@
-import Alt from 'client/src/lib/alt';
+import Alt from 'alt';
 
 const alt = new Alt();
 

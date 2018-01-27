@@ -1,7 +1,9 @@
 import React from "react";
 import Tasks from './Tasks'
+import { Redirect } from 'react-router-dom';
 import TaskActions from "./actions/TaskActions";
 import TaskStore from "./stores/TaskStore";
+import UserActions from "./actions/UserActions";
 import {Button }from 'react-bootstrap';
 import './App.css'
 
@@ -9,7 +11,10 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = TaskStore.getState();
+        this.state = {
+          TaskStore: TaskStore.getState(),
+          redirectLogin: false
+        }
     }
 
     componentDidMount() {
@@ -22,7 +27,7 @@ export default class App extends React.Component {
     }
 
     storeChanged = (state) => {
-        this.setState(state);
+        this.setState({TaskStore: state});
     };
 
     addTask = () => {
@@ -37,11 +42,24 @@ export default class App extends React.Component {
         TaskActions.delete(id);
     };
 
+    logout = () => {
+      UserActions.logout();
+      TaskActions.resetStore();
+      this.setState({redirectLogin: true});
+    }
+
     render() {
-        const tasks = this.state.tasks;
+        const tasks = this.state.TaskStore.tasks;
+        const redirectToLogin = this.state.redirectLogin
+
+        if (redirectToLogin) {
+            return <Redirect to='/login' />;
+        }
+
         return (
             <div>
                 <h1 className="title">Todo App</h1>
+                <Button className="logout-btn add-note" onClick={this.logout}>Logout</Button>
                 <Button className="add-note" onClick={this.addTask}>
                     <span className="add-text">New Task</span>
                     <span className="add-icon">+</span>

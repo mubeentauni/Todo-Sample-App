@@ -1,0 +1,9 @@
+body {
+    margin-top: 0 !important;
+    background: none !important;
+}
+
+.require-error {
+    font-size: 11px;
+    color: red;
+}
