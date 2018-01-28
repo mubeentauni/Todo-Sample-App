@@ -2,11 +2,13 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path');
 var passport = require('passport');
 var customError = require('./error');
 var cors = require('cors');
+require('dotenv').config();
 
-mongoose.connect('localhost:27017/Todo');
+mongoose.connect(process.env.DB_HOST);
 var api = require('./routes/api');
 
 var app = express();
@@ -18,12 +20,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-
+app.use(express.static('public'))
 app.get('/', function (req, res) {
     res.send('Under construction.');
 });
 
 app.use('/api', api);
+
+app.get('*', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 
 app.use(function (req, res, next) {
     var err = new customError(404,'Not Found');
