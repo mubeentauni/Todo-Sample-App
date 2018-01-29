@@ -17,7 +17,6 @@ class TaskStore {
     read(){
         let _this = this;
         const tasks = [];
-        // replace todomvc on line 14 with your APP ID found in your Stamplay App Dashboard.
         $.get(`${CONSTANTS.API_URL}/todo/${localStorage.getItem('userId')}` , Helpers.getHeader() )
             .then(function(res) {
                 let alltasks = res.data;

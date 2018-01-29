@@ -62,12 +62,5 @@ export default class Task extends Component{
         })
     }
 
-    // render(){
-    //     return (
-    //     <div>
-    //         <span> {this.props.task} </span>
-    //     </div>
-    //     )
-    // }
 
 }

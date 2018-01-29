@@ -9,8 +9,6 @@ import {
     Link,
     Redirect
 } from 'react-router-dom';
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
 
 import './App.css';
 import UserStore from './stores/UserStore';
@@ -18,7 +16,6 @@ import Login from './user/login';
 import Register from './user/register';
 import App from './App';
 
-// injectTapEventPlugin();
 
 
 class AppRoot extends Component {
