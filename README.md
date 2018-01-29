@@ -21,3 +21,11 @@ Pre-reqs:
 Now your app will be running as follows:
 - NodeJs backend API's on : localhost:3000
 - React frontend on: localhost:3001
+
+
+# Screenshots of the app
+
+<img width="1566" alt="login-todo" src="https://user-images.githubusercontent.com/12255215/35496153-cdf63554-04e6-11e8-98ec-2707ea5374d8.png">
+<img width="1568" alt="home-todo" src="https://user-images.githubusercontent.com/12255215/35496158-d31ae336-04e6-11e8-93db-96f66df18649.png">
+<img width="1570" alt="delete-todo" src="https://user-images.githubusercontent.com/12255215/35496163-dd39906a-04e6-11e8-925b-ca7a053389fd.png">
+<img width="549" alt="home-responsive" src="https://user-images.githubusercontent.com/12255215/35496170-e54ae7f4-04e6-11e8-9af1-3a530adc8d48.png">
