@@ -7,3 +7,11 @@ body {
     font-size: 11px;
     color: red;
 }
+
+.App-Bar {
+    text-align: center;
+}
+
+.btn-pad {
+    margin-right: 5px !important;
+}

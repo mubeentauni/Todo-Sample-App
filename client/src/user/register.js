@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import Helpers from '../utils/helpers';
 import { Redirect } from 'react-router-dom';
 import './user.css';
+import {Button, Grid, Row, Col }from 'react-bootstrap';
 import UserActions from "../actions/UserActions";
 import UserStore from "../stores/UserStore";
 
@@ -88,62 +89,87 @@ class Register extends Component {
 
         return (
 
-            <div>
-                <AppBar
-                    title="Register"
-                    showMenuIconButton={false}
-                />
-                <TextField
-                    hintText="Enter your First Name"
-                    floatingLabelText="First Name"
-                    onChange={(event, newValue) => this.handleInput('firstname', newValue)}
-                />
-                <br />
-                {showError && validation.firstname.length > 0 ?
-                    validation.firstname.map((key, index)=> {
-                        return <div key={index}><span className="require-error">{key}</span><br /></div>
-                    }): ''
-                }
-                <TextField
-                    hintText="Enter your Last Name"
-                    floatingLabelText="Last Name"
-                    onChange={(event, newValue) => this.handleInput('lastname', newValue)}
-                />
-                <br />
-                {showError && validation.lastname.length > 0 ?
-                    validation.lastname.map((key, index)=> {
-                        return <div key={index}><span className="require-error">{key}</span><br /></div>
-                    }): ''
-                }
-                <TextField
-                    hintText="Enter your Email"
-                    floatingLabelText="Email"
-                    onChange={(event, newValue) => this.handleInput('useremail', newValue)}
-                />
-                <br />
-                {showError && validation.useremail.length > 0 ?
-                    validation.useremail.map((key, index)=> {
-                        return <div key={index}><span className="require-error">{key}</span><br /></div>
-                    }): ''
-                }
-                <TextField
-                    type="password"
-                    hintText="Enter your Password"
-                    floatingLabelText="Password"
-                    onChange={(event, newValue) => this.handleInput('password', newValue)}
-                />
-                <br />
-                {showError && validation.password.length > 0 ?
-                    validation.password.map((key, index)=> {
-                        return <div key={index}><span className="require-error">{key}</span><br /></div>
-                    }): ''
-                }
-                <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleFormSubmit(event)} />
-                <br />
-                Already registered, Login Now
-                <br />
-                <RaisedButton label={"Login"} secondary={true} style={style} onClick={(event) => this.redirectLoginPage()} />
-            </div>
+            <Grid className="container">
+                <Row>
+                    <AppBar
+                        className="App-Bar"
+                        title="Register"
+                        showMenuIconButton={false}
+                    />
+                </Row>
+                <Row>
+                    <Col className="col-2"  sm={3} md={4} lg={5} />
+                    <Col className="col-8" md={4} >
+                        <TextField
+                            hintText="Enter your First Name"
+                            floatingLabelText="First Name"
+                            onChange={(event, newValue) => this.handleInput('firstname', newValue)}
+                        />
+                        <br />
+                        {showError && validation.firstname.length > 0 ?
+                            validation.firstname.map((key, index)=> {
+                                return <div key={index}><span className="require-error">{key}</span><br /></div>
+                            }): ''
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="col-2"  sm={3} md={4} lg={5} />
+                    <Col className="col-8" md={4} >
+                        <TextField
+                            hintText="Enter your Last Name"
+                            floatingLabelText="Last Name"
+                            onChange={(event, newValue) => this.handleInput('lastname', newValue)}
+                        />
+                        <br />
+                        {showError && validation.lastname.length > 0 ?
+                            validation.lastname.map((key, index)=> {
+                                return <div key={index}><span className="require-error">{key}</span><br /></div>
+                            }): ''
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="col-2"  sm={3} md={4} lg={5} />
+                    <Col className="col-8" md={4} >
+                        <TextField
+                            hintText="Enter your Email"
+                            floatingLabelText="Email"
+                            onChange={(event, newValue) => this.handleInput('useremail', newValue)}
+                        />
+                        <br />
+                        {showError && validation.useremail.length > 0 ?
+                            validation.useremail.map((key, index)=> {
+                                return <div key={index}><span className="require-error">{key}</span><br /></div>
+                            }): ''
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="col-2"  sm={3} md={4} lg={5} />
+                    <Col className="col-8" md={4} >
+                        <TextField
+                            type="password"
+                            hintText="Enter your Password"
+                            floatingLabelText="Password"
+                            onChange={(event, newValue) => this.handleInput('password', newValue)}
+                        />
+                        <br />
+                        {showError && validation.password.length > 0 ?
+                            validation.password.map((key, index)=> {
+                                return <div key={index}><span className="require-error">{key}</span><br /></div>
+                            }): ''
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="col-2" sm={3} md={4} lg={5}/>
+                    <Col className="col-8" lg={7}>
+                        <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleFormSubmit(event)} />
+                        <RaisedButton label={"Login"} secondary={true} style={style} onClick={(event) => this.redirectLoginPage()} />
+                    </Col>
+                </Row>
+            </Grid>
         );
     }
 }

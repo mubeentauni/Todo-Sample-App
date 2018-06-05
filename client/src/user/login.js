@@ -7,6 +7,7 @@ import UserActions from '../actions/UserActions';
 import UserStore from '../stores/UserStore';
 import { Redirect } from 'react-router-dom';
 import './user.css';
+import {Button, Grid, Row, Col }from 'react-bootstrap';
 import TaskActions from "../actions/TaskActions";
 import TaskStore from "../stores/TaskStore";
 
@@ -85,40 +86,55 @@ class Login extends Component {
 
         return (
 
-            <div>
-                <AppBar
-                    title="Login"
-                    showMenuIconButton={false}
-                />
-                <TextField
-                    hintText="Enter your Email"
-                    floatingLabelText="Email"
-                    onChange={(event, newValue) => this.handleInput('useremail', newValue)}
-                />
-                <br />
-                {showError && validation.useremail.length > 0 ?
-                    validation.useremail.map((key, index) => {
-                        return <div key={index}><span className="require-error">{key}</span><br /></div>
-                    }) : ''
-                }
-                <TextField
-                    type="password"
-                    hintText="Enter your Password "
-                    floatingLabelText="Password"
-                    onChange={(event, newValue) => this.handleInput('password', newValue)}
-                />
-                <br />
-                {showError && validation.password.length > 0 ?
-                    validation.password.map((key, index) => {
-                        return <div key={index}><span className="require-error">{key}</span><br /></div>
-                    }) : ''
-                }
-                <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleFormSubmit(event)} />
-                <br />
-                Not registered yet, Register Now
-                <br />
-                <RaisedButton label={"Register"} secondary={true} style={style} onClick={(event) => this.redirectToRegisterPage()} />
-            </div>
+            <Grid className="container">
+                <Row>
+                    <AppBar
+                        className="App-Bar"
+                        title="Login"
+                        showMenuIconButton={false}
+                    />
+                </Row>
+                <Row>
+                    <Col className="col-2"  sm={3} md={4} lg={5} />
+                    <Col className="col-8" md={4} >
+                        <TextField
+                            hintText="Enter your Email"
+                            floatingLabelText="Email"
+                            onChange={(event, newValue) => this.handleInput('useremail', newValue)}
+                        />
+                        <br />
+                        {showError && validation.useremail.length > 0 ?
+                            validation.useremail.map((key, index) => {
+                                return <div key={index}><span className="require-error">{key}</span><br /></div>
+                            }) : ''
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="col-2"  sm={3} md={4} lg={5} />
+                    <Col className="col-8" md={4} >
+                        <TextField
+                            type="password"
+                            hintText="Enter your Password "
+                            floatingLabelText="Password"
+                            onChange={(event, newValue) => this.handleInput('password', newValue)}
+                        />
+                        <br />
+                        {showError && validation.password.length > 0 ?
+                            validation.password.map((key, index) => {
+                                return <div key={index}><span className="require-error">{key}</span><br /></div>
+                            }) : ''
+                        }
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="col-2" sm={3} md={4} lg={5}/>
+                    <Col className="col-8" lg={7}>
+                        <RaisedButton className="btn-pad" label="Submit" primary={true} style={style} onClick={(event) => this.handleFormSubmit(event)} />
+                        <RaisedButton className="btn-pad" label={"Register"} secondary={true} style={style} onClick={(event) => this.redirectToRegisterPage()} />
+                    </Col>
+                </Row>
+            </Grid>
         );
     }
 }
